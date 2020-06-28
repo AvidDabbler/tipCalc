@@ -14,8 +14,10 @@ export default class App extends React.Component {
       tip: 0.2
     }
   }
-  
 
+
+
+  
 
   updateCustomTip(customTip) {
     if (!customTip) {
