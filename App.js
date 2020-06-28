@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { TextInput, StyleSheet, View, Text, Button } from 'react-native';
+import { TextInput, StyleSheet, View, Text, } from 'react-native';
+import { Button } from 'react-native-paper';
 
 
 import Hello from './Hello'
@@ -38,39 +39,68 @@ export default class App extends React.Component {
     }
 
     return (
+
       <View style={styles.container}>
+
+        <View style={styles.customTipContainer}>
+          <TextInput
+            value={(this.state.tip * 100).toString() + '%'}
+            style={styles.customTip}
+            keyboardType='numeric'
+            placeholder='0.00'
+            onChangeText={customTip => this.updateCustomTip(customTip)}
+            />
+        </View>
+
         <Text>
           ${tip}
         </Text>
+
         <TextInput
           value={ this.state.inputValue }
           style={styles.textInput}
           keyboardType='numeric'
-          placeholder='0.00'
-          onChangeText={(text)=>this.setState({inputValue: text})}
+          placeholder='$0.00'
+          placeholderTextColor= '#118AB2'
+          onChangeText={(billTotal)=>this.setState({inputValue: billTotal})}
         />
 
         <View style={styles.tipList}>
-          <Button
-            title='10%'
-            onPress={()=>{this.setState({tip:'0.1'})}}
-          />
-          <Button
-            title='15%'
-            onPress={()=>{this.setState({tip:'0.15'})}}
-          />
-          <Button
-            title='20%'
-            onPress={()=>{this.setState({tip:'0.2'})}}
-          />
+          <View style={styles.buttonContainer}>
+            <Button mode='contained'
+              title='10%'
+              style={styles.tipButton}
+              onPress={()=>{
+                this.setState({ tip: '0.1' });
+              
+              }}>
+              10%
+            </Button>
+          </View>
 
-        <TextInput
-          value={(this.state.tip * 100).toString()}
-          style={styles.customTip}
-          keyboardType='numeric'
-          placeholder='0.00'
-          onChangeText={customTip => this.updateCustomTip(customTip)}
-          />
+          <View style={styles.buttonContainer}>
+            <Button mode='contained'
+              title='15%'
+              style={styles.tipButton}
+              onPress={() => { 
+                this.setState({ tip: '0.15' });
+              
+              }}>
+              15%
+            </Button>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <Button mode='contained'
+              title='20%'
+              style={styles.tipButton}
+              onPress={()=>{
+                this.setState({ tip: '0.2' });
+                
+              }}>
+              20%
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -83,33 +113,48 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:20,
+    padding: 20,
+    // backgroundColor:'#EF476F'
     
   },
   textInput: {
     height: 60,
     fontSize:20,
     borderColor: '#333',
-    borderWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
     width: '100%',
     padding: 10,
-    alignItems: center
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: '#06D6A0',
+    color: '#073B4C',
+    
   },
-  tipList: {
-    flexDirection: 'row',
-    margin: 20,
-  },
-  tipButton: {
-    color:'white',
+  customTipContainer: {
     padding: 20,
+    alignItems: 'center',
+    textAlign: 'center',
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    width: '50%',
+    backgroundColor:'#FFD166'
   },
   customTip: {
-    height: 50,
-    width: 55,
-    fontSize: 30,
-    borderColor: '#333',
-    borderWidth: 1,
+    fontSize:40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'space-between',
+  },
+  tipList: {
+    flexDirection: 'row',  
+  },
+  buttonContainer: {
+    padding: 10
+  },  
+  tipButton: {
     padding: 10,
-  }
+    backgroundColor:'#118AB2'
+  },
   
 });
