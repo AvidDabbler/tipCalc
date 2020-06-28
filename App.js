@@ -15,10 +15,6 @@ export default class App extends React.Component {
     }
   }
 
-
-
-  
-
   updateCustomTip(customTip) {
     if (!customTip) {
       this.setState({
@@ -42,9 +38,10 @@ export default class App extends React.Component {
     }
 
     return (
-
       <View style={styles.container}>
-
+        <Text>
+          Tip Calculator
+        </Text>
         <View style={styles.customTipContainer}>
           <TextInput
             value={(this.state.tip * 100).toString() + '%'}
@@ -64,7 +61,7 @@ export default class App extends React.Component {
           style={styles.textInput}
           keyboardType='numeric'
           placeholder='$0.00'
-          placeholderTextColor= '#118AB2'
+          placeholderTextColor='#118AB2'
           onChangeText={(billTotal)=>this.setState({inputValue: billTotal})}
         />
 
@@ -73,6 +70,7 @@ export default class App extends React.Component {
             <Button mode='contained'
               title='10%'
               style={styles.tipButton}
+              labelStyle = {styles.buttonText}
               onPress={()=>{
                 this.setState({ tip: '0.1' });
               
@@ -85,6 +83,7 @@ export default class App extends React.Component {
             <Button mode='contained'
               title='15%'
               style={styles.tipButton}
+              labelStyle = {styles.buttonText}
               onPress={() => { 
                 this.setState({ tip: '0.15' });
               
@@ -97,6 +96,7 @@ export default class App extends React.Component {
             <Button mode='contained'
               title='20%'
               style={styles.tipButton}
+              labelStyle = {styles.buttonText}
               onPress={()=>{
                 this.setState({ tip: '0.2' });
                 
@@ -116,9 +116,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
-    // backgroundColor:'#EF476F'
-    
+    padding: 20,    
   },
   textInput: {
     height: 60,
@@ -132,7 +130,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#06D6A0',
     color: '#073B4C',
-    
   },
   customTipContainer: {
     padding: 20,
@@ -159,5 +156,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor:'#118AB2'
   },
+  buttonText: {
+    fontSize:20
+  }
   
 });
